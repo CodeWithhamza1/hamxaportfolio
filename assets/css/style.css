@@ -130,7 +130,8 @@ h6 {
   margin: 15px auto;
   display: block;
   width: 120px;
-  border: 8px solid #2c2f3f;
+  background: linear-gradient( 45deg, #0095ff, #e600ff);
+  padding: 7px;
 }
 
 #header .profile h1 {
