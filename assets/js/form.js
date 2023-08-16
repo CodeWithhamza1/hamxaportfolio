@@ -13,7 +13,7 @@ contactForm.addEventListener('submit', function (event) {
   if (!formSubmitted && email.value !== "" && name.value !== "" && subject.value !== "" && msg.value !== "") {
     // If all fields are filled, submit the form
     formSubmitted = true; // Set the flag to indicate form submission
-    btn.innerHTML = "Sending...";
+    btn.innerHTML = `Processing <i class="fa fa-circle-o-notch fa-spin"></i>`;
     btn.disabled = true; // Disable the button while sending the form (optional)
 
     // Simulate form submission (You can replace this with actual form submission code)
@@ -23,7 +23,7 @@ contactForm.addEventListener('submit', function (event) {
         body: new FormData(contactForm)
       }).then(response => {
         if (response.ok) {
-          btn.innerHTML = "Sent Successfully";
+          btn.innerHTML = `Sent Successfully <i class="fas fa-check"></i>`;
           btn.style.color = "white";
           btn.style.background = "green";
           // Reset the button color and border to the original state after 2 seconds
@@ -42,22 +42,29 @@ contactForm.addEventListener('submit', function (event) {
             formSubmitted = false; // Reset the form submission flag
           }, 2000);
         } else {
-          btn.innerHTML = "Error Submitting Form";
+          btn.innerHTML = `Error Submitting Form <i class="fas fa-exclamation-circle"></i>`;
           btn.style.color = "white";
           btn.style.background = "red";
           btn.disabled = false; // Re-enable the button after form submission (optional)
         }
       }).catch(error => {
         console.error("Error:", error);
-        btn.innerHTML = "Error Submitting Form";
+        btn.innerHTML = `Error Submitting Form <i class="fas fa-exclamation-triangle"></i>`;
         btn.style.color = "white";
         btn.style.background = "red";
         btn.disabled = false; // Re-enable the button after form submission (optional)
       });
     }, 3000);
   } else {
-    btn.innerHTML = "Please Fill All The Fields";
-    btn.style.color = "white";
-    btn.style.background = "red";
+      btn.innerHTML = `Please Fill All The Fields <i class="fas fa-exclamation-circle"></i>`;
+      btn.style.color = "white";
+      btn.style.background = "red";
+
+      setTimeout(() => {
+            btn.innerHTML = "Submit";
+            btn.style.color = "white"; // Set to empty to reset to default color
+            btn.style.background = "#149ddd"; // Set to empty to reset to default background
+            btn.disabled = false; // Re-enable the button after form submission (optional)
+      }, 2000);
   }
 });
